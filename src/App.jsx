@@ -7,7 +7,29 @@ function App() {
   const [soundEnabled, setSoundEnabled] = useState(true)
   const [selectedSound, setSelectedSound] = useState('bell')
   const [showSoundMenu, setShowSoundMenu] = useState(false)
+  const [selectedTheme, setSelectedTheme] = useState('dark-minimalist')
+  const [showThemeMenu, setShowThemeMenu] = useState(false)
   const audioRef = useRef(null)
+
+  // Tema seçenekleri
+  const themes = {
+    'dark-minimalist': {
+      name: '🌙 Dark Minimalist',
+      className: 'theme-dark-minimalist'
+    },
+    'neon-dark': {
+      name: '✨ Neon Dark',
+      className: 'theme-neon-dark'
+    },
+    'colorful-dark': {
+      name: '🎨 Colorful Dark',
+      className: 'theme-colorful-dark'
+    },
+    'colorful-light': {
+      name: '🌈 Colorful Light',
+      className: 'theme-colorful-light'
+    }
+  }
 
   // Ses efektleri tanımları
   const soundEffects = {
@@ -41,6 +63,14 @@ function App() {
       reset: { freq: 216, duration: 0.4, type: 'sine' },
       complete: { freq: 648, duration: 0.6, type: 'sine' }
     }
+  }
+
+  // Tema değiştirme fonksiyonu
+  const handleThemeChange = (themeKey) => {
+    setSelectedTheme(themeKey)
+    setShowThemeMenu(false)
+    // Tema değişikliği için kısa bir ses çal
+    setTimeout(() => playSound('click'), 100)
   }
 
   // Ses çalma fonksiyonu
@@ -102,7 +132,7 @@ function App() {
   }
 
   return (
-    <div className="app">
+    <div className={`app ${themes[selectedTheme].className}`}>
       <div className="container">
         <h1 className="title">Tasbih</h1>
         
@@ -178,10 +208,37 @@ function App() {
           </div>
         </div>
 
+        {/* Tema Seçici */}
+        <div className="theme-controls">
+          <div className="theme-selector">
+            <button 
+              className="theme-select-btn"
+              onClick={() => setShowThemeMenu(!showThemeMenu)}
+            >
+              {themes[selectedTheme].name} 🎨
+            </button>
+            
+            {showThemeMenu && (
+              <div className="theme-menu">
+                {Object.entries(themes).map(([key, theme]) => (
+                  <button
+                    key={key}
+                    className={`theme-option ${selectedTheme === key ? 'selected' : ''}`}
+                    onClick={() => handleThemeChange(key)}
+                  >
+                    {theme.name}
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
+
         <div className="info">
           <p>99'a ulaştığında otomatik olarak sıfırlanır</p>
           <p>Toplam: {Math.floor(count / 99)} tam tur</p>
           <p className="current-sound">Seçili Ses: {soundEffects[selectedSound].name}</p>
+          <p className="current-theme">Seçili Tema: {themes[selectedTheme].name}</p>
         </div>
       </div>
     </div>

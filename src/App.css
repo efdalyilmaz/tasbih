@@ -5,165 +5,221 @@
 }
 
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: #1f1f1f;
   min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
+  color: rgba(255, 255, 255, 0.9);
+  position: relative;
+}
+
+/* Dark minimalist background with subtle texture */
+body::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 25% 25%, rgba(0, 120, 212, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 75% 75%, rgba(0, 120, 212, 0.03) 0%, transparent 50%);
+  z-index: -1;
 }
 
 .app {
   width: 100%;
-  max-width: 500px;
-  padding: 20px;
+  max-width: 480px;
+  padding: 24px;
+  z-index: 1;
 }
 
 .container {
-  background: rgba(255, 255, 255, 0.95);
-  border-radius: 20px;
-  padding: 40px 30px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(10px);
+  background: rgba(45, 45, 48, 0.8);
+  border-radius: 16px;
+  padding: 48px 32px;
+  box-shadow: 
+    0 4px 24px rgba(0, 0, 0, 0.3),
+    0 0 0 1px rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  position: relative;
 }
 
 .title {
-  font-size: 2.5rem;
-  color: #333;
-  margin-bottom: 30px;
+  font-size: 2.25rem;
+  color: rgba(255, 255, 255, 0.95);
+  margin-bottom: 40px;
   text-align: center;
   font-weight: 300;
+  letter-spacing: -0.5px;
+  line-height: 1.2;
 }
 
 .counter-display {
   text-align: center;
-  margin-bottom: 40px;
+  margin-bottom: 48px;
 }
 
 .counter {
-  font-size: 4rem;
-  font-weight: bold;
-  color: #667eea;
+  font-size: 3.5rem;
+  font-weight: 300;
+  color: #0078d4;
   display: block;
+  line-height: 1;
+  letter-spacing: -1px;
 }
 
 .max-count {
-  font-size: 1.5rem;
-  color: #999;
-  margin-left: 10px;
+  font-size: 1.25rem;
+  color: rgba(255, 255, 255, 0.6);
+  margin-left: 8px;
+  font-weight: 400;
+  letter-spacing: -0.25px;
 }
 
 .tasbih-container {
   display: flex;
   justify-content: center;
-  margin-bottom: 40px;
+  margin-bottom: 48px;
 }
 
 .tasbih {
-  width: 200px;
-  height: 200px;
+  width: 180px;
+  height: 180px;
   border-radius: 50%;
-  background: linear-gradient(145deg, #f0f0f0, #cacaca);
+  background: rgba(45, 45, 48, 0.9);
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
   box-shadow: 
-    inset 0 2px 4px rgba(255, 255, 255, 0.8),
-    0 8px 16px rgba(0, 0, 0, 0.1);
+    0 4px 24px rgba(0, 0, 0, 0.4),
+    0 0 0 1px rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  position: relative;
 }
 
 .tasbih:hover {
-  transform: scale(1.05);
+  transform: scale(1.02);
   box-shadow: 
-    inset 0 2px 4px rgba(255, 255, 255, 0.8),
-    0 12px 24px rgba(0, 0, 0, 0.15);
+    0 8px 32px rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(255, 255, 255, 0.12);
+}
+
+.tasbih:active {
+  transform: scale(0.98);
+  transition: transform 0.1s ease;
 }
 
 .tasbih.animate {
-  transform: scale(0.95);
+  transform: scale(0.96);
+  animation: darkPulse 0.2s ease-in-out;
+}
+
+@keyframes darkPulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(0.96); }
+  100% { transform: scale(1); }
 }
 
 .tasbih-beads {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
-  gap: 8px;
-  width: 120px;
-  height: 120px;
+  gap: 6px;
+  width: 108px;
+  height: 108px;
+  z-index: 2;
+  position: relative;
 }
 
 .bead {
-  width: 12px;
-  height: 12px;
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
-  background: #ddd;
-  transition: all 0.3s ease;
-  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+  background: rgba(255, 255, 255, 0.1);
+  transition: all 0.2s ease;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  position: relative;
 }
 
 .bead.active {
-  background: linear-gradient(145deg, #667eea, #764ba2);
-  box-shadow: 
-    inset 0 1px 3px rgba(0, 0, 0, 0.3),
-    0 2px 4px rgba(102, 126, 234, 0.3);
-  transform: scale(1.2);
+  background: #0078d4;
+  border-color: #0078d4;
+  transform: scale(1.1);
+  box-shadow: 0 2px 8px rgba(0, 120, 212, 0.3);
 }
 
 .controls {
   display: flex;
-  gap: 20px;
+  gap: 16px;
   justify-content: center;
-  margin-bottom: 30px;
+  margin-bottom: 40px;
 }
 
 .increment-btn, .reset-btn {
-  padding: 15px 30px;
+  padding: 12px 24px;
   border: none;
-  border-radius: 50px;
-  font-size: 1.1rem;
-  font-weight: 600;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 400;
   cursor: pointer;
-  transition: all 0.3s ease;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-
-.increment-btn {
-  background: linear-gradient(145deg, #667eea, #764ba2);
-  color: white;
-  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+  transition: all 0.2s ease;
+  background: rgba(45, 45, 48, 0.9);
+  color: rgba(255, 255, 255, 0.9);
+  box-shadow: 
+    0 2px 8px rgba(0, 0, 0, 0.3),
+    0 0 0 1px rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  font-family: 'Segoe UI', sans-serif;
+  letter-spacing: 0.25px;
 }
 
 .increment-btn:hover:not(:disabled) {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+  transform: translateY(-1px);
+  box-shadow: 
+    0 4px 16px rgba(0, 0, 0, 0.4),
+    0 0 0 1px rgba(255, 255, 255, 0.12);
+  background: rgba(45, 45, 48, 1);
+}
+
+.increment-btn:active:not(:disabled) {
+  transform: translateY(0);
+  transition: transform 0.1s ease;
 }
 
 .increment-btn:disabled {
-  background: #ccc;
+  background: rgba(45, 45, 48, 0.5);
+  color: rgba(255, 255, 255, 0.4);
   cursor: not-allowed;
   transform: none;
-  box-shadow: none;
-}
-
-.reset-btn {
-  background: linear-gradient(145deg, #ff6b6b, #ee5a52);
-  color: white;
-  box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+  box-shadow: 
+    0 1px 4px rgba(0, 0, 0, 0.2),
+    0 0 0 1px rgba(255, 255, 255, 0.05);
 }
 
 .reset-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
+  transform: translateY(-1px);
+  box-shadow: 
+    0 4px 16px rgba(0, 0, 0, 0.4),
+    0 0 0 1px rgba(255, 255, 255, 0.12);
+  background: rgba(45, 45, 48, 1);
+}
+
+.reset-btn:active {
+  transform: translateY(0);
+  transition: transform 0.1s ease;
 }
 
 .sound-controls {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 15px;
-  margin-bottom: 20px;
+  gap: 16px;
+  margin-bottom: 32px;
 }
 
 .sound-toggle {
@@ -172,37 +228,43 @@ body {
 }
 
 .sound-btn {
-  padding: 10px 20px;
+  padding: 8px 16px;
   border: none;
-  border-radius: 25px;
-  font-size: 1rem;
-  font-weight: 600;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  font-weight: 400;
   cursor: pointer;
-  transition: all 0.3s ease;
-  background: linear-gradient(145deg, #f0f0f0, #cacaca);
-  color: #333;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease;
+  background: rgba(45, 45, 48, 0.9);
+  color: rgba(255, 255, 255, 0.9);
+  box-shadow: 
+    0 2px 8px rgba(0, 0, 0, 0.3),
+    0 0 0 1px rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  font-family: 'Segoe UI', sans-serif;
 }
 
 .sound-btn.enabled {
-  background: linear-gradient(145deg, #4CAF50, #45a049);
-  color: white;
-  box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+  background: rgba(0, 120, 212, 0.2);
+  color: rgba(255, 255, 255, 0.95);
+  box-shadow: 
+    0 2px 8px rgba(0, 120, 212, 0.2),
+    0 0 0 1px rgba(0, 120, 212, 0.3);
 }
 
 .sound-btn.disabled {
-  background: linear-gradient(145deg, #f0f0f0, #cacaca);
-  color: #999;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  background: rgba(45, 45, 48, 0.5);
+  color: rgba(255, 255, 255, 0.4);
+  box-shadow: 
+    0 1px 4px rgba(0, 0, 0, 0.2),
+    0 0 0 1px rgba(255, 255, 255, 0.05);
 }
 
-.sound-btn:hover {
+.sound-btn:hover:not(.disabled) {
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-}
-
-.sound-btn.enabled:hover {
-  box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
+  box-shadow: 
+    0 4px 16px rgba(0, 0, 0, 0.4),
+    0 0 0 1px rgba(255, 255, 255, 0.12);
 }
 
 .sound-selector {
@@ -212,22 +274,29 @@ body {
 }
 
 .sound-select-btn {
-  padding: 12px 20px;
+  padding: 8px 16px;
   border: none;
-  border-radius: 25px;
-  font-size: 1rem;
-  font-weight: 600;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  font-weight: 400;
   cursor: pointer;
-  transition: all 0.3s ease;
-  background: linear-gradient(145deg, #667eea, #764ba2);
-  color: white;
-  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
-  min-width: 150px;
+  transition: all 0.2s ease;
+  background: rgba(45, 45, 48, 0.9);
+  color: rgba(255, 255, 255, 0.9);
+  box-shadow: 
+    0 2px 8px rgba(0, 0, 0, 0.3),
+    0 0 0 1px rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  min-width: 140px;
+  font-family: 'Segoe UI', sans-serif;
 }
 
 .sound-select-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+  transform: translateY(-1px);
+  box-shadow: 
+    0 4px 16px rgba(0, 0, 0, 0.4),
+    0 0 0 1px rgba(255, 255, 255, 0.12);
+  background: rgba(45, 45, 48, 1);
 }
 
 .sound-menu {
@@ -235,20 +304,24 @@ body {
   top: 100%;
   left: 50%;
   transform: translateX(-50%);
-  background: white;
-  border-radius: 15px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-  padding: 10px;
-  margin-top: 10px;
-  min-width: 180px;
+  background: rgba(45, 45, 48, 0.95);
+  border-radius: 8px;
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.4),
+    0 0 0 1px rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 8px;
+  margin-top: 8px;
+  min-width: 160px;
   z-index: 1000;
-  animation: slideDown 0.3s ease;
+  animation: darkSlideDown 0.2s ease;
 }
 
-@keyframes slideDown {
+@keyframes darkSlideDown {
   from {
     opacity: 0;
-    transform: translateX(-50%) translateY(-10px);
+    transform: translateX(-50%) translateY(-4px);
   }
   to {
     opacity: 1;
@@ -259,53 +332,502 @@ body {
 .sound-option {
   display: block;
   width: 100%;
-  padding: 12px 15px;
+  padding: 8px 12px;
   border: none;
-  background: none;
+  background: transparent;
   text-align: left;
   cursor: pointer;
-  border-radius: 10px;
-  transition: all 0.2s ease;
-  font-size: 0.95rem;
-  color: #333;
+  border-radius: 4px;
+  transition: all 0.15s ease;
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.9);
+  font-family: 'Segoe UI', sans-serif;
+  font-weight: 400;
 }
 
 .sound-option:hover {
-  background: linear-gradient(145deg, #f0f0f0, #e0e0e0);
-  transform: translateX(5px);
+  background: rgba(255, 255, 255, 0.05);
+  transform: translateX(2px);
 }
 
 .sound-option.selected {
-  background: linear-gradient(145deg, #667eea, #764ba2);
-  color: white;
-  font-weight: 600;
+  background: rgba(0, 120, 212, 0.15);
+  color: rgba(255, 255, 255, 0.95);
+  font-weight: 500;
 }
 
 .current-sound {
-  font-weight: 600;
-  color: #667eea !important;
-  margin-top: 10px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.7) !important;
+  margin-top: 8px;
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 0.875rem;
 }
 
 .info {
   text-align: center;
-  color: #666;
-  font-size: 0.9rem;
-  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.875rem;
+  line-height: 1.5;
+  background: rgba(45, 45, 48, 0.5);
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 
+    0 2px 8px rgba(0, 0, 0, 0.3),
+    0 0 0 1px rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  font-family: 'Segoe UI', sans-serif;
+  font-weight: 400;
 }
 
 .info p {
-  margin-bottom: 8px;
+  margin-bottom: 6px;
+}
+
+/* Tema Seçici Stilleri */
+.theme-controls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.theme-selector {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.theme-select-btn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  font-weight: 400;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: rgba(45, 45, 48, 0.9);
+  color: rgba(255, 255, 255, 0.9);
+  box-shadow: 
+    0 2px 8px rgba(0, 0, 0, 0.3),
+    0 0 0 1px rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  min-width: 160px;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.theme-select-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 
+    0 4px 16px rgba(0, 0, 0, 0.4),
+    0 0 0 1px rgba(255, 255, 255, 0.12);
+  background: rgba(45, 45, 48, 1);
+}
+
+.theme-menu {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(45, 45, 48, 0.95);
+  border-radius: 8px;
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.4),
+    0 0 0 1px rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 8px;
+  margin-top: 8px;
+  min-width: 180px;
+  z-index: 1000;
+  animation: darkSlideDown 0.2s ease;
+}
+
+.theme-option {
+  display: block;
+  width: 100%;
+  padding: 8px 12px;
+  border: none;
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.15s ease;
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.9);
+  font-family: 'Segoe UI', sans-serif;
+  font-weight: 400;
+}
+
+.theme-option:hover {
+  background: rgba(255, 255, 255, 0.05);
+  transform: translateX(2px);
+}
+
+.theme-option.selected {
+  background: rgba(0, 120, 212, 0.15);
+  color: rgba(255, 255, 255, 0.95);
+  font-weight: 500;
+}
+
+.current-theme {
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.7) !important;
+  margin-top: 8px;
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 0.875rem;
+}
+
+/* Tema 1: Dark Minimalist (Mevcut) */
+.theme-dark-minimalist {
+  /* Mevcut stiller zaten uygulanmış */
+}
+
+/* Tema 2: Neon Dark */
+.theme-neon-dark {
+  --neon-blue: #00d4ff;
+  --neon-purple: #9d00ff;
+  --neon-pink: #ff0080;
+  --neon-green: #00ff88;
+}
+
+.theme-neon-dark body {
+  background: #0a0a0a;
+}
+
+.theme-neon-dark .container {
+  background: rgba(20, 20, 20, 0.9);
+  box-shadow: 
+    0 4px 24px rgba(0, 212, 255, 0.2),
+    0 0 0 1px rgba(0, 212, 255, 0.1);
+  border: 1px solid rgba(0, 212, 255, 0.2);
+}
+
+.theme-neon-dark .title {
+  color: var(--neon-blue);
+  text-shadow: 0 0 10px var(--neon-blue);
+}
+
+.theme-neon-dark .counter {
+  color: var(--neon-blue);
+  text-shadow: 0 0 15px var(--neon-blue);
+}
+
+.theme-neon-dark .tasbih {
+  background: rgba(20, 20, 20, 0.9);
+  box-shadow: 
+    0 4px 24px rgba(0, 212, 255, 0.3),
+    0 0 0 1px rgba(0, 212, 255, 0.2);
+  border: 1px solid rgba(0, 212, 255, 0.3);
+}
+
+.theme-neon-dark .tasbih:hover {
+  box-shadow: 
+    0 8px 32px rgba(0, 212, 255, 0.4),
+    0 0 0 1px rgba(0, 212, 255, 0.3);
+}
+
+.theme-neon-dark .bead {
+  background: rgba(0, 212, 255, 0.1);
+  border: 1px solid rgba(0, 212, 255, 0.3);
+  box-shadow: 0 0 5px rgba(0, 212, 255, 0.2);
+}
+
+.theme-neon-dark .bead.active {
+  background: var(--neon-blue);
+  border-color: var(--neon-blue);
+  box-shadow: 0 0 10px var(--neon-blue);
+}
+
+.theme-neon-dark .increment-btn,
+.theme-neon-dark .reset-btn {
+  background: rgba(20, 20, 20, 0.9);
+  color: var(--neon-blue);
+  box-shadow: 
+    0 2px 8px rgba(0, 212, 255, 0.3),
+    0 0 0 1px rgba(0, 212, 255, 0.2);
+  border: 1px solid rgba(0, 212, 255, 0.3);
+}
+
+.theme-neon-dark .increment-btn:hover:not(:disabled),
+.theme-neon-dark .reset-btn:hover {
+  box-shadow: 
+    0 4px 16px rgba(0, 212, 255, 0.4),
+    0 0 0 1px rgba(0, 212, 255, 0.3);
+  background: rgba(20, 20, 20, 1);
+}
+
+.theme-neon-dark .sound-btn {
+  background: rgba(20, 20, 20, 0.9);
+  color: var(--neon-green);
+  box-shadow: 
+    0 2px 8px rgba(0, 255, 136, 0.3),
+    0 0 0 1px rgba(0, 255, 136, 0.2);
+  border: 1px solid rgba(0, 255, 136, 0.3);
+}
+
+.theme-neon-dark .sound-btn.enabled {
+  background: rgba(0, 255, 136, 0.2);
+  color: var(--neon-green);
+  box-shadow: 
+    0 2px 8px rgba(0, 255, 136, 0.4),
+    0 0 0 1px rgba(0, 255, 136, 0.3);
+}
+
+/* Tema 3: Colorful Dark */
+.theme-colorful-dark {
+  --colorful-blue: #2196f3;
+  --colorful-purple: #9c27b0;
+  --colorful-pink: #e91e63;
+  --colorful-orange: #ff9800;
+  --colorful-green: #4caf50;
+}
+
+.theme-colorful-dark body {
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+}
+
+.theme-colorful-dark .container {
+  background: rgba(26, 26, 46, 0.9);
+  box-shadow: 
+    0 4px 24px rgba(33, 150, 243, 0.3),
+    0 0 0 1px rgba(33, 150, 243, 0.2);
+  border: 1px solid rgba(33, 150, 243, 0.2);
+}
+
+.theme-colorful-dark .title {
+  color: var(--colorful-blue);
+  text-shadow: 0 2px 10px rgba(33, 150, 243, 0.3);
+}
+
+.theme-colorful-dark .counter {
+  color: var(--colorful-purple);
+  text-shadow: 0 2px 10px rgba(156, 39, 176, 0.3);
+}
+
+.theme-colorful-dark .tasbih {
+  background: rgba(26, 26, 46, 0.9);
+  box-shadow: 
+    0 4px 24px rgba(233, 30, 99, 0.3),
+    0 0 0 1px rgba(233, 30, 99, 0.2);
+  border: 1px solid rgba(233, 30, 99, 0.2);
+}
+
+.theme-colorful-dark .tasbih:hover {
+  box-shadow: 
+    0 8px 32px rgba(233, 30, 99, 0.4),
+    0 0 0 1px rgba(233, 30, 99, 0.3);
+}
+
+.theme-colorful-dark .bead {
+  background: rgba(255, 152, 0, 0.2);
+  border: 1px solid rgba(255, 152, 0, 0.4);
+}
+
+.theme-colorful-dark .bead.active {
+  background: var(--colorful-orange);
+  border-color: var(--colorful-orange);
+  box-shadow: 0 0 10px rgba(255, 152, 0, 0.5);
+}
+
+.theme-colorful-dark .increment-btn {
+  background: var(--colorful-blue);
+  color: white;
+  box-shadow: 0 4px 15px rgba(33, 150, 243, 0.4);
+}
+
+.theme-colorful-dark .increment-btn:hover:not(:disabled) {
+  box-shadow: 0 6px 20px rgba(33, 150, 243, 0.5);
+}
+
+.theme-colorful-dark .reset-btn {
+  background: var(--colorful-pink);
+  color: white;
+  box-shadow: 0 4px 15px rgba(233, 30, 99, 0.4);
+}
+
+.theme-colorful-dark .reset-btn:hover {
+  box-shadow: 0 6px 20px rgba(233, 30, 99, 0.5);
+}
+
+.theme-colorful-dark .sound-btn {
+  background: rgba(26, 26, 46, 0.9);
+  color: var(--colorful-green);
+  box-shadow: 0 2px 8px rgba(76, 175, 80, 0.3);
+  border: 1px solid rgba(76, 175, 80, 0.3);
+}
+
+.theme-colorful-dark .sound-btn.enabled {
+  background: var(--colorful-green);
+  color: white;
+  box-shadow: 0 4px 15px rgba(76, 175, 80, 0.4);
+}
+
+/* Tema 4: Colorful Light */
+.theme-colorful-light {
+  --light-blue: #2196f3;
+  --light-purple: #9c27b0;
+  --light-pink: #e91e63;
+  --light-orange: #ff9800;
+  --light-green: #4caf50;
+}
+
+.theme-colorful-light body {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+}
+
+.theme-colorful-light .container {
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 
+    0 4px 24px rgba(0, 0, 0, 0.1),
+    0 0 0 1px rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.theme-colorful-light .title {
+  color: var(--light-purple);
+  text-shadow: 0 2px 10px rgba(156, 39, 176, 0.2);
+}
+
+.theme-colorful-light .counter {
+  color: var(--light-blue);
+  text-shadow: 0 2px 10px rgba(33, 150, 243, 0.2);
+}
+
+.theme-colorful-light .max-count {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.theme-colorful-light .tasbih {
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 
+    0 4px 24px rgba(0, 0, 0, 0.1),
+    0 0 0 1px rgba(255, 255, 255, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.theme-colorful-light .tasbih:hover {
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.15),
+    0 0 0 1px rgba(255, 255, 255, 0.4);
+}
+
+.theme-colorful-light .bead {
+  background: rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.theme-colorful-light .bead.active {
+  background: var(--light-orange);
+  border-color: var(--light-orange);
+  box-shadow: 0 0 10px rgba(255, 152, 0, 0.3);
+}
+
+.theme-colorful-light .increment-btn {
+  background: var(--light-blue);
+  color: white;
+  box-shadow: 0 4px 15px rgba(33, 150, 243, 0.3);
+}
+
+.theme-colorful-light .increment-btn:hover:not(:disabled) {
+  box-shadow: 0 6px 20px rgba(33, 150, 243, 0.4);
+}
+
+.theme-colorful-light .reset-btn {
+  background: var(--light-pink);
+  color: white;
+  box-shadow: 0 4px 15px rgba(233, 30, 99, 0.3);
+}
+
+.theme-colorful-light .reset-btn:hover {
+  box-shadow: 0 6px 20px rgba(233, 30, 99, 0.4);
+}
+
+.theme-colorful-light .sound-btn {
+  background: rgba(255, 255, 255, 0.9);
+  color: rgba(0, 0, 0, 0.87);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.theme-colorful-light .sound-btn.enabled {
+  background: var(--light-green);
+  color: white;
+  box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+}
+
+.theme-colorful-light .sound-btn.disabled {
+  background: rgba(0, 0, 0, 0.05);
+  color: rgba(0, 0, 0, 0.4);
+}
+
+.theme-colorful-light .sound-select-btn,
+.theme-colorful-light .theme-select-btn {
+  background: rgba(255, 255, 255, 0.9);
+  color: rgba(0, 0, 0, 0.87);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.theme-colorful-light .sound-select-btn:hover,
+.theme-colorful-light .theme-select-btn:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  background: rgba(255, 255, 255, 1);
+}
+
+.theme-colorful-light .sound-menu,
+.theme-colorful-light .theme-menu {
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.1),
+    0 0 0 1px rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.theme-colorful-light .sound-option,
+.theme-colorful-light .theme-option {
+  color: rgba(0, 0, 0, 0.87);
+}
+
+.theme-colorful-light .sound-option:hover,
+.theme-colorful-light .theme-option:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.theme-colorful-light .sound-option.selected,
+.theme-colorful-light .theme-option.selected {
+  background: rgba(33, 150, 243, 0.1);
+  color: var(--light-blue);
+}
+
+.theme-colorful-light .info {
+  background: rgba(255, 255, 255, 0.1);
+  color: rgba(0, 0, 0, 0.7);
+  box-shadow: 
+    0 2px 8px rgba(0, 0, 0, 0.1),
+    0 0 0 1px rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.theme-colorful-light .current-sound,
+.theme-colorful-light .current-theme {
+  color: rgba(0, 0, 0, 0.7) !important;
 }
 
 /* Responsive Design */
 @media (max-width: 480px) {
+  .app {
+    padding: 16px;
+  }
+  
   .container {
-    padding: 30px 20px;
+    padding: 32px 24px;
   }
   
   .title {
     font-size: 2rem;
+    margin-bottom: 32px;
   }
   
   .counter {
@@ -313,45 +835,63 @@ body {
   }
   
   .tasbih {
-    width: 150px;
-    height: 150px;
+    width: 160px;
+    height: 160px;
   }
   
   .tasbih-beads {
-    width: 90px;
-    height: 90px;
-    gap: 6px;
+    width: 96px;
+    height: 96px;
+    gap: 5px;
   }
   
   .bead {
-    width: 10px;
-    height: 10px;
+    width: 9px;
+    height: 9px;
   }
   
   .controls {
     flex-direction: column;
     align-items: center;
+    gap: 12px;
   }
   
   .increment-btn, .reset-btn {
-    width: 200px;
+    width: 160px;
   }
   
   .sound-controls {
-    gap: 10px;
+    gap: 12px;
   }
   
   .sound-select-btn {
     min-width: 120px;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
   }
   
   .sound-menu {
-    min-width: 150px;
+    min-width: 140px;
   }
   
   .sound-option {
-    padding: 10px 12px;
-    font-size: 0.9rem;
+    padding: 6px 10px;
+    font-size: 0.8rem;
+  }
+}
+
+/* Responsive Design için tema seçici */
+@media (max-width: 480px) {
+  .theme-select-btn {
+    min-width: 140px;
+    font-size: 0.8rem;
+  }
+  
+  .theme-menu {
+    min-width: 160px;
+  }
+  
+  .theme-option {
+    padding: 6px 10px;
+    font-size: 0.8rem;
   }
 }
